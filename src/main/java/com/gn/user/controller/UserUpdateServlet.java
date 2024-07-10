@@ -9,25 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/create")
-public class UserCreateServlet extends HttpServlet {
+@WebServlet("/user/updateInfo")
+public class UserUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public UserCreateServlet() {
+    public UserUpdateServlet() {
         super();
      
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		RequestDispatcher view = request.getRequestDispatcher("/views/user/create.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/user/update_info.jsp");
 		view.forward(request, response);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
 		doGet(request, response);
 	}
 

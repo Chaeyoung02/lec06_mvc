@@ -27,6 +27,7 @@ public class UserLoginEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	//로그인 -> 비밀번호 확인(사용자 입력 == 회원가입)
 	//회원가입 비밀번화 암호화 != 사용자 입력 암호화
+		System.out.println("here");
 		String id = request.getParameter("user_id");
 		String pw = request.getParameter("user_pw");
 		//System.out.println("비밀번호 : "+pw);
