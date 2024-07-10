@@ -26,7 +26,7 @@
 				System.out.println(u.getUser_id());
 			%><form action='/user/editEnd' name="modify_account_form"
 					method="post">
-					<input type="hidden" name="user_no" value=""> 
+					<input type="hidden" name="user_no" value="<%=u.getUser_no()%>"> 
 					<input type="text" name="user_id" value="<%=u.getUser_id() %>" readonly disabled>
 					<br> <input type="password" name="user_pw"
 						placeholder="수정 비밀번호"> <br> <input type="password"

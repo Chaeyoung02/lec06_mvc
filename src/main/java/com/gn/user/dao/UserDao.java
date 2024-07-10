@@ -88,34 +88,30 @@ public class UserDao {
 		}
 		return info;
 	}
-	public int updateUser(User u, String pw, String name, Connection conn) {
+	public int updateUser(User u, Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int result = 0;
 		
 		try {
 		
-			String sql1 = "SELECT COUNT(*) AS cnt FROM `user` WHERE user_no = ? AND user_id = ?";
+			String sql1 = "SELECT COUNT(*) AS cnt FROM `user` WHERE user_no = ?";
 			pstmt = conn.prepareStatement(sql1);
 			pstmt.setInt(1, u.getUser_no());
-			pstmt.setString(2, u.getUser_id());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				
 				result = rs.getInt("cnt");
-				//중복되는 아이디가 있는 경우 :-1
-				//INSERT과정 중 오류가 발생한 경우 : 0
-				//정상 INSERT : 1
+				
 			}
-			if(result == 1) {
-				System.out.println("here");
+			if(result > 0) {
+				System.out.println("업데이트");
 				String sql2 = "UPDATE `user` SET  user_pw = ?, user_name= ?"
-						+ " WHERE user_no = ? AND user_id = ?";
+						+ " WHERE user_no = ?";
 				pstmt = conn.prepareStatement(sql2);
 				pstmt.setString(1, u.getUser_pw());
 				pstmt.setString(2, u.getUser_name());
 				pstmt.setInt(3, u.getUser_no());
-				pstmt.setString(4, u.getUser_id());
 				result = pstmt.executeUpdate();
 
 			}else {
@@ -123,7 +119,7 @@ public class UserDao {
 				//중복되는 아이디가 있는 경우 
 				result = 0;
 			}
-			conn.commit();
+			
 			
 		}catch (Exception e) {
 			e.printStackTrace();

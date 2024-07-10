@@ -11,7 +11,7 @@ public class User {
 		super();
 		
 	}
-	public User(int user_no, String user_name, String user_pw, String user_id) {
+	public User(int user_no, String user_id, String user_pw, String user_name) {
 		super();
 		this.user_no = user_no;
 		this.user_name = user_name;

@@ -25,10 +25,12 @@ public class UserUpdateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pw = request.getParameter("user_pw");
 		String name =  request.getParameter("user_name");
+		int number = Integer.parseInt(request.getParameter("user_no"));
 		User u = new User();
 		u.setUser_pw(pw);
 		u.setUser_name(name);
-		int result = new UserService().updateUser(u, name,pw);
+		u.setUser_no(number);
+		int result = new UserService().updateUser(u);
 		System.out.println(result);
 	}
 

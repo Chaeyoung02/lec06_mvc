@@ -22,9 +22,9 @@ public class UserService {
 		close(conn);
 		return u;
 	}
-	public int updateUser(User u, String pw, String name) {
+	public int updateUser(User u) {
 		Connection conn = getConnection();
-		int result = new UserDao().updateUser(u, pw, name, conn);
+		int result = new UserDao().updateUser(u, conn);
 		return result;
 	}
 }
