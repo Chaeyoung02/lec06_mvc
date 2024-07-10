@@ -2,6 +2,7 @@ package com.gn.user.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.gn.user.vo.User;
@@ -17,7 +18,7 @@ public class UserDao {
 			pstmt.setString(2, u.getUser_pw());
 			pstmt.setString(3, u.getUser_name());
 			result = pstmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -54,4 +55,37 @@ public class UserDao {
 //		return result;
 		
 	}
+//	
+	public User loginUser(String id, String pw, Connection conn) {
+		int result = 0;
+		Statement stmt = null;
+		ResultSet rs = null;
+		User info =null;
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM `user` WHERE `user_id` = '"+id+"' AND `user_pw`= '"+pw+"'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				info = new User(rs.getInt("user_no"),
+						rs.getString("user_id"),
+						rs.getString("user_pw"),
+						rs.getString("user_name"));
+			}
+		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return info;
+	}
+	
 }
