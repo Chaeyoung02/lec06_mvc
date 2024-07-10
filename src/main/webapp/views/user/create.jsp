@@ -30,7 +30,7 @@
 				</form>
 			</div>
 			<div class="login">
-				<a href="#">로그인</a>
+				<a href="/user/login">로그인</a>
 			</div>
 		</div>
 	</section>	
