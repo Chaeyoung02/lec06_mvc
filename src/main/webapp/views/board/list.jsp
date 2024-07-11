@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <link href='../../resources/css/board/list.css' rel="stylesheet" type="text/css">
+<link href='../../resources/css/board/paging.css' rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="../include/header.jsp" %>
@@ -48,5 +49,26 @@
 			</div>
 		</div>
 	</section>	
+	<% Board paging = (Board)request.getAttribute("paging");%>
+	<% if(paging != null){ %>
+		<div class="center">
+			<div class="pagination">
+				<% if(paging.isPrev()){ %>
+					<a href="/board/list?nowPage=<%=(paging.getPageBarStart()-1)%>">
+						&laquo;
+					</a>
+				<%}%>
+				<% for(int i = paging.getPageBarStart() ; i <= paging.getPageBarEnd() ; i++) {%>
+					<a href="/board/list?nowPage=<%=i%>" 
+					<%=paging.getNowPage() == i ? "class='active'" : ""%>>
+						<%=i%>
+					</a>
+				<%}%>
+				<% if(paging.isNext()){%>
+					<a href="/board/list?nowPage=<%=(paging.getPageBarEnd()+1)%>">&raquo;</a>
+				<%}%>
+			</div>
+		</div>
+	<% } %>
 </body>
 </html>
